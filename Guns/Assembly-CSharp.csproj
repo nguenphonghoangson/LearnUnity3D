@@ -57,18 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WeaponSwitching.cs" />
+    <Compile Include="Assets\Scripts\Audio Manager\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\WeaponSwitch.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
+    <Compile Include="Assets\Scripts\Audio Manager\Sound.cs" />
     <Compile Include="Assets\Scripts\Scriptable Object\GunData.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\EnemyFollow.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
-    <Compile Include="Assets\Scripts\Audio Manager\Sound.cs" />
-    <Compile Include="Assets\Scripts\Audio Manager\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\EnemyFollow.cs" />
-    <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\WeaponSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
