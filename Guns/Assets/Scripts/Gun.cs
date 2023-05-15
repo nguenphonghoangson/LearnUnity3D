@@ -14,8 +14,9 @@ public class Gun : MonoBehaviour {
         float timeSinceLastShot;
         private AudioManager audioManager;
         public Text bullets;
+        public Text reloadingText;
 
-        private void Awake() {
+    private void Awake() {
             PlayerShoot.shootInput += Shoot;
             PlayerShoot.reloadInput += StartReload;
             audioManager = FindObjectOfType<AudioManager>();
@@ -31,10 +32,17 @@ public class Gun : MonoBehaviour {
 
         private IEnumerator Reload() {
             gunData.reloading = true;
+            float reloadTime = gunData.reloadTime;
 
-            yield return new WaitForSeconds(gunData.reloadTime);
+            while (reloadTime > 0)
+            {
+                reloadingText.text = "Reloading: " + reloadTime.ToString("F1");
+                yield return null;
+                reloadTime -= Time.deltaTime;
+            }
 
             gunData.currentAmmo = gunData.magSize;
+            reloadingText.text = "";
 
             gunData.reloading = false;
         }
