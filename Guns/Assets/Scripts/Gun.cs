@@ -1,9 +1,11 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using UnityEngine;
+using Unity.VisualScripting;
+using UnityEngine;
+    using UnityEngine.UI;
 
-    public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviour {
 
         [Header("References")]
         [SerializeField] private GunData gunData;
@@ -11,12 +13,14 @@
         public ParticleSystem muzzleFlash;
         float timeSinceLastShot;
         private AudioManager audioManager;
+        public Text bullets;
 
         private void Awake() {
             PlayerShoot.shootInput += Shoot;
             PlayerShoot.reloadInput += StartReload;
             audioManager = FindObjectOfType<AudioManager>();
         }
+        
 
         private void OnDisable() => gunData.reloading = false;
 
@@ -54,7 +58,7 @@
                         {
                             audioManager.Play("fight");
                         }
-                gunData.currentAmmo--;
+                    gunData.currentAmmo--;
                     timeSinceLastShot = 0;
                     OnGunShot();
                 }
@@ -64,6 +68,7 @@
         private void Update() {
             timeSinceLastShot += Time.deltaTime;
             Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance);
+            bullets.text="Bullet: "+ gunData.currentAmmo;
         }
 
         private void OnGunShot() {  }

@@ -15,8 +15,8 @@ MonoBehaviour:
   name: SciFiGunLightBlue
   damage: 20
   maxDistance: 100
-  currentAmmo: 82
-  magSize: 31
+  currentAmmo: 60
+  magSize: 64
   fireRate: 400
   reloadTime: 1.5
   reloading: 0

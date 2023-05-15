@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-        public GameObject enemyWhitePrefab;
-        public GameObject enemyRedPrefab;
-        public float spawnDelay = 1f;
-
+        [SerializeField]
+        private float timeToSpawn = 5f;
+        private ObjectPool objectPool;
+        [SerializeField]
+        private GameObject prefab;
+        [SerializeField] private int numberEnemy=10;
+  
         private void Start()
         {
+            objectPool = FindObjectOfType<ObjectPool>();
             StartCoroutine(SpawnEnemies());
         }
 
@@ -17,12 +21,13 @@ public class Spawner : MonoBehaviour
         {
             while (true)
             {
-                yield return new WaitForSeconds(spawnDelay);
-            int randomIndex = Random.Range(0, 2);
-            GameObject prefabToSpawn = randomIndex == 0 ? enemyWhitePrefab : enemyRedPrefab;
-
-            GameObject newObject=Instantiate(prefabToSpawn,transform);
-            newObject.transform.localPosition = Vector3.zero;
+                yield return new WaitForSeconds(timeToSpawn);
+                GameObject newCritter = objectPool.GetObject(prefab);
+            if (newCritter != null) {
+                newCritter.transform.SetParent(transform);
+                newCritter.transform.localPosition = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
             }
+              
+        }
         }
  }

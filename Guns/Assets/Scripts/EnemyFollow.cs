@@ -2,17 +2,21 @@
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.AI;
+using UnityEngine.Pool;
 
     public class EnemyFollow : MonoBehaviour,IDamageable
     {
         public NavMeshAgent enemy;
-        public GameObject player;
-        public GameObject obj;
+        private GameObject player;
+        private GameObject obj;
         public float health;
-        // Start is called before the first frame update
-        void Awake()
+        private ObjectPool objectPool;
+
+    // Start is called before the first frame update
+    void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+            objectPool = FindObjectOfType<ObjectPool>();
         }
 
         // Update is called once per frame
@@ -26,6 +30,9 @@
         {
             health -= damage;
             Debug.Log(health);
-            if (health <= 0) Destroy(gameObject);
+        if (health <= 0) {
+            objectPool.ReturnGameObject(gameObject);
+            player.GetComponent<PlayerController>().EnemyDie++;
+        };
         }
-    }
+}

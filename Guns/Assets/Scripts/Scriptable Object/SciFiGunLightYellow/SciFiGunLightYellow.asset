@@ -15,8 +15,8 @@ MonoBehaviour:
   name: SciFiGunLightYellow
   damage: 40
   maxDistance: 100
-  currentAmmo: 0
-  magSize: 31
+  currentAmmo: 31
+  magSize: 40
   fireRate: 400
   reloadTime: 2
   reloading: 0
